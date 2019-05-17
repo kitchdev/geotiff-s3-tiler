@@ -1,0 +1,6 @@
+# sbt
+target/
+
+.env
+.metadata
+.metals
