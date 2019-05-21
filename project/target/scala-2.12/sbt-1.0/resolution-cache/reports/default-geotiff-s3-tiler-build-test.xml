@@ -9,29 +9,129 @@
 		extra-sbtVersion="1.0"
 		conf="test"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20190517112719"/>
+		date="20190520193417"/>
 	<dependencies>
+		<module organisation="com.typesafe" name="sbt-mima-plugin">
+			<revision name="0.3.0" status="release" pubdate="20180523113312" resolver="sbt-plugin-releases" artresolver="sbt-plugin-releases" homepage="http://github.com/lightbend/migration-manager" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="true" searched="true" default="false" conf="compile, default(compile)" position="4">
+				<license name="Apache License v2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="successful" details="" size="2038" time="721" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/com.typesafe/sbt-mima-plugin/ivy-0.3.0.xml" searched="true" original-local-location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/com.typesafe/sbt-mima-plugin/ivy-0.3.0.xml.original" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe/sbt-mima-plugin/scala_2.12/sbt_1.0/0.3.0/ivys/ivy.xml"/>
+				<caller organisation="default" name="geotiff-s3-tiler-build" conf="test, compile, runtime" rev="0.3.0" rev-constraint-default="0.3.0" rev-constraint-dynamic="0.3.0" callerrev="0.1.0-SNAPSHOT" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
+				<artifacts>
+					<artifact name="sbt-mima-plugin" type="jar" ext="jar" status="successful" details="" size="40991" time="936" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/com.typesafe/sbt-mima-plugin/jars/sbt-mima-plugin-0.3.0.jar">
+						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.typesafe/sbt-mima-plugin/scala_2.12/sbt_1.0/0.3.0/jars/sbt-mima-plugin.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="mima-reporter_2.12">
+			<revision name="0.3.0" status="release" pubdate="20180523063401" resolver="public" artresolver="public" homepage="http://github.com/lightbend/migration-manager" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="5">
+				<license name="Apache License v2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="successful" details="" size="1966" time="92" location="/home/mathew/.ivy2/cache/com.typesafe/mima-reporter_2.12/ivy-0.3.0.xml" searched="true" original-local-location="/home/mathew/.ivy2/cache/com.typesafe/mima-reporter_2.12/ivy-0.3.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/mima-reporter_2.12/0.3.0/mima-reporter_2.12-0.3.0.pom"/>
+				<caller organisation="com.typesafe" name="sbt-mima-plugin" conf="compile" rev="0.3.0" rev-constraint-default="0.3.0" rev-constraint-dynamic="0.3.0" callerrev="0.3.0"/>
+				<artifacts>
+					<artifact name="mima-reporter_2.12" type="jar" ext="jar" status="successful" details="" size="87428" time="306" location="/home/mathew/.ivy2/cache/com.typesafe/mima-reporter_2.12/jars/mima-reporter_2.12-0.3.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/mima-reporter_2.12/0.3.0/mima-reporter_2.12-0.3.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="config">
+			<revision name="1.0.0" status="release" pubdate="20121015090115" resolver="public" artresolver="public" homepage="https://github.com/typesafehub/config" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="11">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="successful" details="" size="1858" time="118" location="/home/mathew/.ivy2/cache/com.typesafe/config/ivy-1.0.0.xml" searched="true" original-local-location="/home/mathew/.ivy2/cache/com.typesafe/config/ivy-1.0.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/config/1.0.0/config-1.0.0.pom"/>
+				<caller organisation="com.typesafe" name="mima-reporter_2.12" conf="default, compile, runtime, master" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="0.3.0"/>
+				<artifacts>
+					<artifact name="config" type="bundle" ext="jar" status="successful" details="" size="185676" time="298" location="/home/mathew/.ivy2/cache/com.typesafe/config/bundles/config-1.0.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/config/1.0.0/config-1.0.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="mima-core_2.12">
+			<revision name="0.3.0" status="release" pubdate="20180523063327" resolver="public" artresolver="public" homepage="http://github.com/lightbend/migration-manager" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
+				<license name="Apache License v2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="successful" details="" size="1998" time="126" location="/home/mathew/.ivy2/cache/com.typesafe/mima-core_2.12/ivy-0.3.0.xml" searched="true" original-local-location="/home/mathew/.ivy2/cache/com.typesafe/mima-core_2.12/ivy-0.3.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/mima-core_2.12/0.3.0/mima-core_2.12-0.3.0.pom"/>
+				<caller organisation="com.typesafe" name="mima-reporter_2.12" conf="default, compile, runtime, master" rev="0.3.0" rev-constraint-default="0.3.0" rev-constraint-dynamic="0.3.0" callerrev="0.3.0"/>
+				<artifacts>
+					<artifact name="mima-core_2.12" type="jar" ext="jar" status="successful" details="" size="255443" time="335" location="/home/mathew/.ivy2/cache/com.typesafe/mima-core_2.12/jars/mima-core_2.12-0.3.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/mima-core_2.12/0.3.0/mima-core_2.12-0.3.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
 		<module organisation="au.com.onegeek" name="sbt-dotenv">
-			<revision name="2.0.117" status="release" pubdate="20181223155035" resolver="sbt-plugin-releases" artresolver="sbt-plugin-releases" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="true" searched="true" default="false" conf="compile, default(compile)" position="2">
+			<revision name="2.0.117" status="release" pubdate="20181223155035" resolver="sbt-chain" artresolver="sbt-chain" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="2">
 				<license name="MIT" url="http://opensource.org/licenses/MIT"/>
-				<metadata-artifact status="successful" details="" size="2788" time="652" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/au.com.onegeek/sbt-dotenv/ivy-2.0.117.xml" searched="true" original-local-location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/au.com.onegeek/sbt-dotenv/ivy-2.0.117.xml.original" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/au.com.onegeek/sbt-dotenv/scala_2.12/sbt_1.0/2.0.117/ivys/ivy.xml"/>
+				<metadata-artifact status="no" details="" size="2788" time="0" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/au.com.onegeek/sbt-dotenv/ivy-2.0.117.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/au.com.onegeek/sbt-dotenv/scala_2.12/sbt_1.0/2.0.117/ivys/ivy.xml"/>
 				<caller organisation="default" name="geotiff-s3-tiler-build" conf="test, compile, runtime" rev="2.0.117" rev-constraint-default="2.0.117" rev-constraint-dynamic="2.0.117" callerrev="0.1.0-SNAPSHOT" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
 				<artifacts>
-					<artifact name="sbt-dotenv" type="jar" ext="jar" status="successful" details="" size="23510" time="1164" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/au.com.onegeek/sbt-dotenv/jars/sbt-dotenv-2.0.117.jar">
+					<artifact name="sbt-dotenv" type="jar" ext="jar" status="no" details="" size="23510" time="0" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/au.com.onegeek/sbt-dotenv/jars/sbt-dotenv-2.0.117.jar">
 						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/au.com.onegeek/sbt-dotenv/scala_2.12/sbt_1.0/2.0.117/jars/sbt-dotenv.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="net.java.dev.jna" name="jna">
-			<revision name="5.2.0" status="release" pubdate="20181223065209" resolver="public" artresolver="public" homepage="https://github.com/java-native-access/jna" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="3">
+			<revision name="5.2.0" status="release" pubdate="20181223065209" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/java-native-access/jna" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="3">
 				<license name="LGPL, version 2.1" url="http://www.gnu.org/licenses/licenses.html"/>
 				<license name="Apache License v2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="successful" details="" size="1580" time="98" location="/home/mathew/.ivy2/cache/net.java.dev.jna/jna/ivy-5.2.0.xml" searched="true" original-local-location="/home/mathew/.ivy2/cache/net.java.dev.jna/jna/ivy-5.2.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.2.0/jna-5.2.0.pom"/>
+				<metadata-artifact status="no" details="" size="2567" time="0" location="/home/mathew/.ivy2/cache/net.java.dev.jna/jna/ivy-5.2.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.2.0/jna-5.2.0.pom"/>
 				<caller organisation="au.com.onegeek" name="sbt-dotenv" conf="compile" rev="5.2.0" rev-constraint-default="5.2.0" rev-constraint-dynamic="5.2.0" callerrev="2.0.117"/>
 				<artifacts>
-					<artifact name="jna" type="jar" ext="jar" status="successful" details="" size="1488769" time="297" location="/home/mathew/.ivy2/cache/net.java.dev.jna/jna/jars/jna-5.2.0.jar">
+					<artifact name="jna" type="jar" ext="jar" status="no" details="" size="1488769" time="0" location="/home/mathew/.ivy2/cache/net.java.dev.jna/jna/jars/jna-5.2.0.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.2.0/jna-5.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-compiler">
+			<revision name="2.12.7" status="release" pubdate="20180927043727" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="8">
+				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
+				<metadata-artifact status="no" details="" size="3089" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang/scala-compiler/ivy-2.12.7.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.7/scala-compiler-2.12.7.pom"/>
+				<caller organisation="com.typesafe" name="mima-core_2.12" conf="compile, runtime" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="0.3.0"/>
+				<artifacts>
+					<artifact name="scala-compiler" type="jar" ext="jar" status="no" details="" size="10478558" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.12.7.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.7/scala-compiler-2.12.7.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang.modules" name="scala-xml_2.12">
+			<revision name="1.0.6" status="release" pubdate="20161101102105" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="10">
+				<license name="BSD 3-clause" url="http://opensource.org/licenses/BSD-3-Clause"/>
+				<metadata-artifact status="no" details="" size="3137" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/ivy-1.0.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6.pom"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="1.0.6" rev-constraint-default="1.0.6" rev-constraint-dynamic="1.0.6" callerrev="2.12.7"/>
+				<artifacts>
+					<artifact name="scala-xml_2.12" type="bundle" ext="jar" status="no" details="" size="547860" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.12/1.0.6/scala-xml_2.12-1.0.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-reflect">
+			<revision name="2.12.7" status="release" pubdate="20180927043203" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.12.7/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="9">
+				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
+				<metadata-artifact status="no" details="" size="2825" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.12.7.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.7/scala-reflect-2.12.7.pom"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="2.12.7"/>
+				<artifacts>
+					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="3616372" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.7.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.7/scala-reflect-2.12.7.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.12.7" status="release" pubdate="20180927043542" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.12.7/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="6">
+				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
+				<metadata-artifact status="no" details="" size="2653" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang/scala-library/ivy-2.12.7.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.7/scala-library-2.12.7.pom"/>
+				<caller organisation="com.typesafe" name="mima-core_2.12" conf="compile, runtime" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="0.3.0"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="2.12.7"/>
+				<caller organisation="com.typesafe" name="mima-reporter_2.12" conf="default, compile, runtime, master" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="0.3.0"/>
+				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="2.12.7"/>
+				<caller organisation="org.scala-lang.modules" name="scala-xml_2.12" conf="compile, runtime" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="1.0.6"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="5277511" time="0" location="/home/mathew/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.7.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.7/scala-library-2.12.7.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
@@ -49,14 +149,21 @@
 			</revision>
 		</module>
 		<module organisation="com.dwijnand" name="sbt-compat">
-			<revision name="1.2.6" status="release" pubdate="20180210190335" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/dwijnand/sbt-compat" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*)" position="1">
+			<revision name="1.2.6" status="release" pubdate="20180210190335" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/dwijnand/sbt-compat" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), default(compile)" position="1">
 				<license name="Apache-2.0" url="https://www.apache.org/licenses/LICENSE-2.0"/>
 				<metadata-artifact status="no" details="" size="2061" time="0" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/com.dwijnand/sbt-compat/ivy-1.2.6.xml" searched="false" origin-is-local="false" origin-location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.dwijnand/sbt-compat/scala_2.12/sbt_1.0/1.2.6/ivys/ivy.xml"/>
 				<caller organisation="net.virtual-void" name="sbt-dependency-graph" conf="default, compile, runtime, master" rev="1.2.6" rev-constraint-default="1.2.6" rev-constraint-dynamic="1.2.6" callerrev="0.9.2" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
+				<caller organisation="com.typesafe" name="sbt-mima-plugin" conf="compile" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="0.3.0" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
 				<artifacts>
 					<artifact name="sbt-compat" type="jar" ext="jar" status="no" details="" size="3730" time="0" location="/home/mathew/.ivy2/cache/scala_2.12/sbt_1.0/com.dwijnand/sbt-compat/jars/sbt-compat-1.2.6.jar">
 						<origin-location is-local="false" location="https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.dwijnand/sbt-compat/scala_2.12/sbt_1.0/1.2.6/jars/sbt-compat.jar"/>
 					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.0.0" evicted="latest-revision" evicted-reason="" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" conf="compile, default(compile)" position="-1">
+				<evicted-by rev="1.2.6"/>
+				<caller organisation="com.typesafe" name="sbt-mima-plugin" conf="compile" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="0.3.0" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
+				<artifacts>
 				</artifacts>
 			</revision>
 		</module>

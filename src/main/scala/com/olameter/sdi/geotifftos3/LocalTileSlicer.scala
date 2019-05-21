@@ -39,6 +39,7 @@ import org.apache.spark.rdd._
 
 import scala.io.StdIn
 import java.io.File
+import java.io.Serializable
 import java.util.List
 
 import scala.collection.JavaConversions._
@@ -48,20 +49,31 @@ class LocalTileSlicer(
     var orthoPath: String, 
     var bucketName: String, 
     var tileWidth: Int, 
-    var layerName: String) {
+    var layerName: String) extends Serializable {
     
     val AWS_ACCESS_KEY = sys.env("AWS_ACCESS_KEY")
     val AWS_SECRET_KEY = sys.env("AWS_SECRET_KEY")
-
+    val prefix = "geotiff_tiles"
     val region = Regions.US_EAST_2
     val awsCredentials = new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY)
     val credentialsProvider = new AWSStaticCredentialsProvider(awsCredentials)
     println("========s3Region", region)
-    var amazonS3 = AmazonS3ClientBuilder
+    @transient lazy val amazonS3 = AmazonS3ClientBuilder
       .standard()
       .withCredentials(credentialsProvider)
       .withRegion(region)
-      .build()
+      .build()      
+    
+    // Create the attributes store that will tell us information about our catalog.
+    val attributeStore = new S3AttributeStore(bucketName, prefix) {
+      override def s3Client = specialS3Client
+    }
+    // Create the writer that we will use to store the tiles in the local catalog.
+    val writer = new S3LayerWriter(attributeStore, bucketName, prefix) {
+      override def rddWriter = new S3RDDWriter {
+        def getS3Client = () => specialS3Client
+      }
+    }
 
     var specialS3Client = new AmazonS3Client(amazonS3)
 
@@ -71,22 +83,22 @@ class LocalTileSlicer(
       val orthoDemoFile = new File(orthoPath)
       // upload ortho image with standard s3 client for testing purposes
       // ==============================================================
-      if (orthoDemoFile.exists()) {
-        try {
-          println(s"Uploading ${orthoPath} to S3 bucket ${bucketName}...\n")
-          amazonS3.putObject(bucketName, "geotiffDemo.tif", orthoDemoFile)
-          println(s"Uploading ${orthoPath} to S3 bucket ${bucketName} ======> SUCCESSFUL\n")
-        } catch {
-          case err: AmazonClientException => println("AmazonClientException", err)
-          case err: AmazonServiceException => println("AmazonServiceException", err)
-        } finally {
-          val results: ListObjectsV2Result = amazonS3.listObjectsV2(bucketName)
-          val objects: List[S3ObjectSummary] = results.getObjectSummaries()
-          for (s3Objs <- objects) {
-            println(s"Uploaded Objects in ${bucketName}", s3Objs)
-          }
-        }
-      }
+      // if (orthoDemoFile.exists()) {
+      //   try {
+      //     println(s"Uploading ${orthoPath} to S3 bucket ${bucketName}...\n")
+      //     amazonS3.putObject(bucketName, "geotiffDemo.tif", orthoDemoFile)
+      //     println(s"Uploading ${orthoPath} to S3 bucket ${bucketName} ======> SUCCESSFUL\n")
+      //   } catch {
+      //     case err: AmazonClientException => println("AmazonClientException", err)
+      //     case err: AmazonServiceException => println("AmazonServiceException", err)
+      //   } finally {
+      //     val results: ListObjectsV2Result = amazonS3.listObjectsV2(bucketName)
+      //     val objects: List[S3ObjectSummary] = results.getObjectSummaries()
+      //     for (s3Objs <- objects) {
+      //       println(s"Uploaded Objects in ${bucketName}", s3Objs)
+      //     }
+      //   }
+      // }
       // ==============================================================
 
       // Read the geotiff in as a single image RDD,
@@ -111,16 +123,7 @@ class LocalTileSlicer(
       //  Create the MultibandTileLayerRDD required to write data into the catalog
       val tileLayerRdd: RDD[(SpatialKey, MultibandTile)] with Metadata[TileLayerMetadata[SpatialKey]] = MultibandTileLayerRDD(tiled, rasterMetaData)
 
-      // Create the attributes store that will tell us information about our catalog.
-      val attributeStore = new S3AttributeStore(bucketName, "geotiff_tiles") {
-        override def s3Client = specialS3Client
-      }
-      // Create the writer that we will use to store the tiles in the local catalog.
-      val writer = S3LayerWriter(attributeStore)
-
-      // Checking if the client is configured properly
-      val s3BucketCustomConfig = attributeStore.s3Client.doesBucketExist(bucketName)
-      println(s3BucketCustomConfig, "====================s3Client")
+      
 
       val layerId = LayerId(layerName, 0)
       if (attributeStore.layerExists(layerId)) {

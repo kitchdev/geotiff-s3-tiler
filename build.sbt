@@ -16,3 +16,5 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % "2.3.1",
   "com.amazonaws" % "aws-java-sdk" % "1.11.548"
 )
+
+mimaPreviousArtifacts := Set("io.netty" % "netty" % "3.6.2.Final")
