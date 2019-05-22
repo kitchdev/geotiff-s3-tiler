@@ -4,3 +4,4 @@ target/
 .env
 .metadata
 .metals
+.scalafmt.conf
