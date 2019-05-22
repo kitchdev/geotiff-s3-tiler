@@ -50,48 +50,64 @@ class LocalTileSlicer(
     var bucketName: String,
     var tileWidth: Int,
     var layerName: String
-) extends Serializable {
+) {
 
   val AWS_ACCESS_KEY = sys.env("AWS_ACCESS_KEY")
   val AWS_SECRET_KEY = sys.env("AWS_SECRET_KEY")
   val prefix = "geotiff_tiles"
-  val region = Regions.US_EAST_2
-  val awsCredentials = new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY)
-  val credentialsProvider = new AWSStaticCredentialsProvider(awsCredentials)
+  val region: Regions = Regions.US_EAST_2
+  val awsCredentials: BasicAWSCredentials =
+    new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY)
+  val credentialsProvider: AWSStaticCredentialsProvider =
+    new AWSStaticCredentialsProvider(awsCredentials)
 
-  @transient lazy val amazonS3 = AmazonS3ClientBuilder
+  @transient lazy val amazonS3: AmazonS3 = AmazonS3ClientBuilder
     .standard()
     .withCredentials(credentialsProvider)
     .withRegion(region)
     .build()
 
   // Creating a geotrellis s3Client
-  var specialS3Client = new AmazonS3Client(amazonS3)
+  def specialS3Client: AmazonS3Client = new AmazonS3Client(amazonS3)
   // Create the attributes store that will tell us information about our catalog.
-  val attributeStore = new S3AttributeStore(bucketName, prefix) {
-    override def s3Client = specialS3Client
-  }
-  // Create the writer that we will use to store the tiles in the local catalog.
-  val writer = new S3LayerWriter(attributeStore, bucketName, prefix) {
-    override def rddWriter = new S3RDDWriter {
-      def getS3Client = () => specialS3Client
+  val attributeStore: S3AttributeStore =
+    new S3AttributeStore(bucketName, prefix) {
+      override def s3Client = specialS3Client
     }
-  }
+  // Create the writer that we will use to store the tiles in the local catalog.
+  @transient lazy val writer: S3LayerWriter =
+    new S3LayerWriter(attributeStore, bucketName, prefix) {
+      override def rddWriter = new S3RDDWriter {
+        @transient lazy val newClient = new AmazonS3Client(
+          AmazonS3ClientBuilder
+            .standard()
+            .withCredentials(credentialsProvider)
+            .withRegion(region)
+            .build()
+        )
+        override def getS3Client = () => { newClient }
+        println(getS3Client)
+      }
+    }
 
   def run(implicit sc: SparkContext): Unit = {
 
     val orthoFullPath = "file://" + new File(orthoPath).getAbsolutePath
     val orthoDemoFile = new File(orthoPath)
     // upload ortho image with standard s3 client for testing purposes
+    // it works
     // ==============================================================
     // if (orthoDemoFile.exists()) {
     //   try {
     //     println(s"Uploading ${orthoPath} to S3 bucket ${bucketName}...\n")
     //     amazonS3.putObject(bucketName, "geotiffDemo.tif", orthoDemoFile)
-    //     println(s"Uploading ${orthoPath} to S3 bucket ${bucketName} ======> SUCCESSFUL\n")
+    //     println(
+    //       s"Uploading ${orthoPath} to S3 bucket ${bucketName} ======> SUCCESSFUL\n"
+    //     )
     //   } catch {
     //     case err: AmazonClientException => println("AmazonClientException", err)
-    //     case err: AmazonServiceException => println("AmazonServiceException", err)
+    //     case err: AmazonServiceException =>
+    //       println("AmazonServiceException", err)
     //   } finally {
     //     val results: ListObjectsV2Result = amazonS3.listObjectsV2(bucketName)
     //     val objects: List[S3ObjectSummary] = results.getObjectSummaries()
@@ -128,9 +144,7 @@ class LocalTileSlicer(
 
     val layerId = LayerId(layerName, 0)
     if (attributeStore.layerExists(layerId)) {
-      // println(new LayerManager)
       attributeStore.delete(layerId)
-      // println(layerId, "LAYER ID ALREADY EXISTS PREPARE TO FAIL")
     }
     writer.write(layerId, tileLayerRdd, ZCurveKeyIndexMethod)
   }
