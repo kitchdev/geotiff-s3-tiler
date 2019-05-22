@@ -58,7 +58,7 @@ class LocalTileSlicer(
   val region = Regions.US_EAST_2
   val awsCredentials = new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY)
   val credentialsProvider = new AWSStaticCredentialsProvider(awsCredentials)
-  println("========s3Region", region)
+
   @transient lazy val amazonS3 = AmazonS3ClientBuilder
     .standard()
     .withCredentials(credentialsProvider)
