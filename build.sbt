@@ -18,4 +18,12 @@ libraryDependencies ++= Seq(
   "io.minio" % "minio" % "4.0.2"
 )
 
-mimaPreviousArtifacts := Set("io.netty" % "netty" % "3.6.2.Final")
+mimaPreviousArtifacts := Set(
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7.2"
+)
+mimaPreviousArtifacts := Set(
+  "com.fasterxml.jackson.core" % "jackson-core" % "2.6.7.2"
+)
+mimaPreviousArtifacts := Set(
+  "com.fasterxml.jackson.core" % "jackson-annotations" % "2.6.7.2"
+)
