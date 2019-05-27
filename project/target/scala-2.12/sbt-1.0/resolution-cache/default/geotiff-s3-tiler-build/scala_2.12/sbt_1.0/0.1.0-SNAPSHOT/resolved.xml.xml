@@ -4,7 +4,7 @@
 		module="geotiff-s3-tiler-build"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20190522162154"
+		publication="20190524055742"
 		e:sbtVersion="1.0" e:scalaVersion="2.12"
 	>
 		<description>
@@ -43,6 +43,7 @@
 		<dependency org="net.virtual-void" name="sbt-dependency-graph" rev="0.9.2" conf="compile->default(compile)" e:sbtVersion="1.0" e:scalaVersion="2.12"/>
 		<dependency org="au.com.onegeek" name="sbt-dotenv" rev="2.0.117" conf="compile->default(compile)" e:sbtVersion="1.0" e:scalaVersion="2.12"/>
 		<dependency org="com.typesafe" name="sbt-mima-plugin" rev="0.3.0" conf="compile->default(compile)" e:sbtVersion="1.0" e:scalaVersion="2.12"/>
+		<dependency org="com.eed3si9n" name="sbt-assembly" rev="0.14.9" conf="compile->default(compile)" e:sbtVersion="1.0" e:scalaVersion="2.12"/>
 		<override org="org.scala-sbt" module="scripted-plugin_2.12" matcher="exact" rev="1.2.8"/>
 	</dependencies>
 </ivy-module>

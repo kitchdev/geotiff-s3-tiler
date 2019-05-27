@@ -51,7 +51,6 @@ class LocalTileSlicer(
     var tileWidth: Int,
     var layerName: String
 ) {
-
   val AWS_ACCESS_KEY = sys.env("AWS_ACCESS_KEY")
   val AWS_SECRET_KEY = sys.env("AWS_SECRET_KEY")
   val prefix = "geotiff_tiles"

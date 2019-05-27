@@ -27,3 +27,25 @@ mimaPreviousArtifacts := Set(
 mimaPreviousArtifacts := Set(
   "com.fasterxml.jackson.core" % "jackson-annotations" % "2.6.7.2"
 )
+
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x                             => MergeStrategy.first
+}
+
+assemblyShadeRules in assembly ++= Seq(
+  ShadeRule
+    .rename("com.fasterxml.jackson.core.**" -> "my_jackson.@1")
+    .inLibrary("com.fasterxml.jackson.core" % "jackson-databind" % "2.9.0-pr3")
+    .inProject,
+  ShadeRule
+    .rename("com.fasterxml.jackson.core.**" -> "my_jackson.@1")
+    .inLibrary("com.fasterxml.jackson.core" % "jackson-core" % "2.9.0-pr3")
+    .inProject,
+  ShadeRule
+    .rename("com.fasterxml.jackson.core.**" -> "my_jackson.@1")
+    .inLibrary(
+      "com.fasterxml.jackson.core" % "jackson-annotations" % "2.9.0-pr3"
+    )
+    .inProject
+)
